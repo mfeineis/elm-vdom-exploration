@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Elm VDOM Exploration</title>
+</head>
+<body>
+    <script src="/assets/webcomponents-lite.js"></script>
+    <script src="/_compile/src/Main.elm"></script>
+    <script>
+
+    let timesConstructed = 0;
+    let timesConnected = 0;
+    let timesDisconnected = 0;
+
+    customElements.define('my-element', class extends HTMLElement {
+         constructor() {
+             super();
+             timesConstructed++;
+             //console.log("MyElement", timesConstructed, this);
+         }
+
+         connectedCallback() {
+             //this.appendChild("MyElement");
+             timesConnected++;
+             //console.log("connectedCallback", timesConnected, this);
+             this.innerHTML = `my-element[${timesConnected}]`;
+         }
+
+         disconnectedCallback(name, value, oldValue) {
+             timesDisconnected++;
+         }
+
+         attributeChangedCallback(name, value, oldValue) {
+             console.log("my-element::attributeChangedCallback", name, oldValue, "->", value);
+         }
+    });
+
+    const app = Elm.Main.fullscreen();
+    app.ports.fromElm.subscribe(msg => {
+         console.log("fromElm", {
+             timesConstructed,
+             timesConnected,
+             timesDisconnected,
+         }, msg);
+    });
+
+    </script>
+</body>
+</html>

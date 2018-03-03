@@ -1,0 +1,23 @@
+{
+  "name": "elm-vdom-exploration",
+  "version": "0.1.0",
+  "description": "Let's see when Elm's VDOM actually tears down custom elements...",
+  "main": "index.html",
+  "scripts": {
+    "start": "elm reactor -p 8081",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfeineis/elm-vdom-exploration.git"
+  },
+  "author": "Martin Feineis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mfeineis/elm-vdom-exploration/issues"
+  },
+  "homepage": "https://github.com/mfeineis/elm-vdom-exploration#readme",
+  "devDependencies": {
+    "elm": "^0.18.0"
+  }
+}
